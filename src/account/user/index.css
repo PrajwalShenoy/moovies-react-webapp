@@ -1,0 +1,17 @@
+.main-container {
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-success {
+    color: #f0c20e !important;
+    background-color: #333131 !important;
+    border-color: #f0c20e !important;
+}
+
+.btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open>.dropdown-toggle.btn-success {
+    color: #f0c20e !important;
+    background-color: #000000 !important;
+    border-color: #f0c20e !important;
+}

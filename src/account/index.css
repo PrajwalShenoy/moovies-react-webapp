@@ -1,0 +1,10 @@
+.sidebar {
+    background-color: #333131 !important;
+    border-top: 1px solid #000000 !important;
+    color: #f0c20e;
+    width: 280px;
+}
+
+.mainframe {
+    min-height: 93.5vh;
+}

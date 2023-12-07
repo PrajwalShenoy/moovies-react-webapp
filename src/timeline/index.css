@@ -1,0 +1,34 @@
+.timelineCard {
+    position: relative; /* Make the container position relative */
+    border-color: #f0c20e !important;
+    border-style: solid;
+    border-width: thin;
+    padding-left: 0px !important;
+}
+
+
+.user-image {
+    width: 40px; /* Adjust the size as needed */
+    height: 40px; /* Adjust the size as needed */
+    border-radius: 50%; /* Make it a circle */
+    object-fit: cover; /* Ensure the image covers the circle without stretching */
+}
+
+
+.timestamp {
+    position: absolute; /* Make the timestamp position absolute */
+    bottom: 0;
+    right: 0;
+    color: #888;
+    margin: 0.5rem;
+}
+
+.timelinecard-username {
+    font-size: 20px;
+    color: white;
+}
+
+.timelinecard-content {
+    font-size: 20px;
+    color: #f0c20e;
+}
