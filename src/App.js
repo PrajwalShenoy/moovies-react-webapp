@@ -5,6 +5,7 @@ import Navbar from "./navbar";
 import Home from "./home";
 import Timeline from "./timeline";
 import Account from "./account";
+import Signin from "./signin";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/timeline" element={<Timeline/>} />
         <Route path="/account/*" element={<Account />} />
+        <Route path="/signin" element={<Signin />} />
       </Routes>
     </div>
   );
