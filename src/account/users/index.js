@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import "./index.css";
 
 const Users = () => {
-    // Dummy data for user, followers, and following
-    const userData = [
-        { userId: 1,username:"Rakshit", followers: [2, 3], following: [2] },
-        { userId: 2, username:"Prajwal", followers: [1], following: [3,2,4] },
-        { userId: 3, username:"Nitin",followers: [1], following: [1,4] },
-        { userId: 4, username:"Adi",followers: [1,2,3], following: [1,3] },
-    ];
+    const [users, setUsers] = useState([]);
+    const URL = "http://localhost:4000/api/users";
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(URL);
+                setUsers(response.data);
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+            }
+        };
+
+        fetchData();
+    }, [URL]);
+
 
     return (
         <div className="container p-4 main-container">
@@ -17,13 +27,13 @@ const Users = () => {
             <table className="table customise-navbar">
                 <thead>
                 <tr className="heading-color">
-                    <th>User </th>
+                    <th>User</th>
                     <th>Followers</th>
                     <th>Following</th>
                 </tr>
                 </thead>
                 <tbody>
-                {userData.map((user, index) => (
+                {users.map((user, index) => (
                     <tr key={index}>
                         <td>{user.username}</td>
                         <td>{user.followers.length}</td>
