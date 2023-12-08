@@ -1,0 +1,9 @@
+.customise-navbar {
+    --bs-table-bg: #333131 !important;
+    --bs-table-color: white !important;
+    width: 60%;
+}
+
+.heading-color{
+    --bs-table-color: #f0c20e !important;
+}

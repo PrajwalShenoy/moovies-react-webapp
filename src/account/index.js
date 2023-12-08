@@ -3,6 +3,9 @@ import { Link, useLocation, Routes, Route } from "react-router-dom";
 import "./index.css"
 import User from "./user";
 import Watchlist from "./watchlist";
+import Users from "./users";
+import Following from "./Following";
+import Followers from "./Followers";
 
 const Account = () => {
     return (
@@ -66,9 +69,9 @@ const Account = () => {
             <div>
                 <Routes>
                     <Route path="" element={<User/>} />
-                    <Route path="users" element={<h1>Users</h1>} />
-                    <Route path="followers" element={<h1>Followers</h1>} />
-                    <Route path="following" element={<h1>Following</h1>} />
+                    <Route path="users" element={<Users/>} />
+                    <Route path="followers" element={<Followers/>} />
+                    <Route path="following" element={<Following />} />
                     <Route path="watchlist" element={<Watchlist/>} />
                     <Route path="activities" element={<h1>Activities</h1>} />
                 </Routes>
