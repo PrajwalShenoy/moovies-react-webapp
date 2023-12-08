@@ -4,8 +4,8 @@ import "./index.css"
 import User from "./user";
 import Watchlist from "./watchlist";
 import Users from "./users";
-import Following from "./Following";
-import Followers from "./Followers";
+import Following from "./following";
+import Followers from "./followers";
 
 const Account = () => {
     return (
