@@ -73,11 +73,11 @@ const SignUp = () => {
                 </div>
 
                 <div className="mb-3">
-                    <label htmlFor="username" className="form-label">Username:</label>
+                    <label htmlFor="signup-username" className="form-label">Username:</label>
                     <input
                         type="text"
                         className="form-control"
-                        id="username"
+                        id="signup-username"
                         name="username"
                         value={userData.username}
                         onChange={handleInputChange}
@@ -101,12 +101,12 @@ const SignUp = () => {
                 </div>
 
                 <div className="mb-3">
-                    <label htmlFor="password" className="form-label">Password:</label>
+                    <label htmlFor="signup-password" className="form-label">Password:</label>
                     <div className="input-group">
                         <input
                             type={showPassword ? "text" : "password"}
                             className="form-control"
-                            id="password"
+                            id="signup-password"
                             name="password"
                             value={userData.password}
                             onChange={handleInputChange}

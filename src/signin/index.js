@@ -1,6 +1,6 @@
 import React from "react";
 import "./index.css";
-import SignUp from "./Signup";
+// import SignUp from "./Signup";
 import SignIn from "./Signin";
 
 const Signin = () => {
@@ -10,9 +10,9 @@ const Signin = () => {
                 <div className="col-md-6 signin-container">
                     <SignIn />
                 </div>
-                <div className="col-md-6 signup-container">
+                {/* <div className="col-md-6 signup-container">
                     <SignUp />
-                </div>
+                </div> */}
             </div>
         </div>
     );

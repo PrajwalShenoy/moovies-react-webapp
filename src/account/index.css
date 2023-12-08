@@ -8,3 +8,7 @@
 .mainframe {
     min-height: 93.5vh;
 }
+
+.signout-button {
+    color: #f0c20e !important;
+}

@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import "./index.css";
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 import axios from 'axios';
-import './index.css';
 
 const Followers = () => {
     const [users, setUsers] = useState([]);
@@ -22,23 +25,38 @@ const Followers = () => {
         fetchData();
     }, [URL]);
 
+    const { userIsSet } = useSelector((state) => state.userReducer);
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (!userIsSet) {
+            navigate("/account/users");
+        }
+    }, [userIsSet]);
+
+    const userData = [
+        { userId: 1, username: "Rakshit", followers: [2, 3], following: [2] },
+        { userId: 2, username: "Prajwal", followers: [1], following: [3, 2, 4] },
+        { userId: 3, username: "Nitin", followers: [1], following: [1, 4] },
+        { userId: 4, username: "Adi", followers: [1, 2, 3], following: [1, 3] },
+    ];
+
     return (
         <div className="container p-4 main-container">
             <h1>Followers Table for {currentUser && currentUser.firstName + " " +currentUser.lastName}</h1>
 
             <table className="table customise-navbar">
                 <thead>
-                <tr className="heading-color">
-                    <th>Followers</th>
-                </tr>
+                    <tr className="heading-color">
+                        <th>Followers</th>
+                    </tr>
                 </thead>
                 <tbody>
-                {currentUser &&
-                 currentUser.followers.map((followerUserId, index) => (
-                     <tr key={index}>
-                         <td>{users.find((user) => user.id === followerUserId)?.firstName+ " "+ users.find((user) => user.id === followerUserId)?.lastName}</td>
-                     </tr>
-                 ))}
+                    {
+                        currentUser && currentUser.followers.map((followerUserId, index) => (
+                        <tr key={index}>
+                            <td>{userData.find(user => user.userId === followerUserId)?.username}</td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
         </div>

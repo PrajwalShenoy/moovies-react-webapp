@@ -1,8 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import "./index.css";
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 import axios from 'axios';
-import './index.css';
 
 const Following = () => {
+    
+    const { userIsSet } = useSelector((state) => state.userReducer);
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (!userIsSet) {
+            navigate("/account/users");
+        }
+    }, [userIsSet]);
+
     const [users, setUsers] = useState([]);
     const [currentUser, setCurrentUser] = useState(null);
     const URL = 'http://localhost:4000/api/users';

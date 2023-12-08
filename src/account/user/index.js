@@ -1,26 +1,30 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateUser } from './userReducer';
+import { useNavigate } from 'react-router';
 import "./index.css";
 
 const User = () => {
-    const initialUserData = {
-        firstName: 'John',
-        lastName: 'Doe',
-        username: 'johndoe123',
-        email: 'john.doe@example.com',
-        password: 'password123',
-        memberSince: '2022-01-01'
-    };
-
-    const [userData, setUserData] = useState(initialUserData);
+    const { currentUser } = useSelector((state) => state.userReducer);
+    const [userData, setUserData] = useState(currentUser);
     const [showPassword, setShowPassword] = useState(false);
+    const dispatch = useDispatch();
+    
+    const { userIsSet } = useSelector((state) => state.userReducer);
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (!userIsSet) {
+            navigate("/account/users");
+        }
+    }, [userIsSet]);
 
     useEffect(() => {
         populateForm();
-    }, []);
+    }, [currentUser]);
 
     const populateForm = () => {
-        setUserData(initialUserData);
+        setUserData(currentUser);
     };
 
     const handleInputChange = (e) => {
@@ -32,8 +36,7 @@ const User = () => {
     };
 
     const saveChanges = () => {
-        console.log('Updated User Data:', userData);
-        alert(userData.firstName + ' ' + userData.lastName + ' has been updated.');
+        dispatch(updateUser(userData));
     };
 
     const togglePasswordVisibility = () => {
