@@ -35,7 +35,7 @@ const Users = () => {
                 <tbody>
                 {users.map((user, index) => (
                     <tr key={index}>
-                        <td>{user.username}</td>
+                        <td>{user.firstName + " " + user.lastName}</td>
                         <td>{user.followers.length}</td>
                         <td>{user.following.length}</td>
                     </tr>
