@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import * as client from '../api/client';
 import './index.css';
 
 const SignUp = () => {
