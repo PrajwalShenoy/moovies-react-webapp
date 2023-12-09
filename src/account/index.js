@@ -92,15 +92,6 @@ const Account = () => {
                                 </Link>
                             </li>
                         }
-                        {
-                            userIsSet &&
-                            <li className="nav-item">
-                                <Link to="/account/activities" className="nav-link ">
-                                    <svg className="bi me-2" width="16" height="16"></svg>
-                                    Activities
-                                </Link>
-                            </li>
-                        }
                     </ul>
                     <hr />
                     <footer>
