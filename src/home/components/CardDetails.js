@@ -1,10 +1,11 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import * as client from "../../api/client";
 
 const CardDetails = () => {
     const { cardId } = useParams();
-
-    const cardDetails = {
+    const [cardDetails, setCardDetails] = useState({
         "adult": false,
         "backdrop_path": "/4qCqAdHcNKeAHcK8tJ8wNJZa9cx.jpg",
         "belongs_to_collection": {
@@ -72,8 +73,11 @@ const CardDetails = () => {
         "video": false,
         "vote_average": 8.205,
         "vote_count": 19378
-    }
+    });
 
+    useEffect(() => {
+        client.getMovieDetails(cardId).then((data) => setCardDetails(data));
+    }, []);
 
     return (
         <div>
@@ -108,9 +112,7 @@ const CardDetails = () => {
                     </button>
                 </div>
             </div>
-
-            {/* Dummy Reviews Section */}
-            <div className="container d-flex mt-5 mb-2 timelineCard card-text">
+            {/* <div className="container d-flex mt-5 mb-2 timelineCard card-text">
                 <div className="container m-3">
                     <h4>Username</h4>
                     <div className="mt-3">
@@ -118,7 +120,7 @@ const CardDetails = () => {
                     </div>
                 </div>
 
-            </div>
+            </div> */}
         </div>
 
     );

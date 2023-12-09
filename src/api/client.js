@@ -44,4 +44,9 @@ export const getSpecificMovies = async (type) => {
     }
     console.log(response.data.results);
     return response.data.results;
-}
+};
+
+export const getMovieDetails = async (id) => {
+    const response = await request.get(`${BACKEND_URL}/api/movies/${id}`);
+    return response.data;
+};
