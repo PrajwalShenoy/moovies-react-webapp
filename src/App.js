@@ -8,6 +8,7 @@ import Timeline from "./timeline";
 import Account from "./account";
 import Signin from "./signin";
 import store from "./store";
+import CardDetails from "./home/components/CardDetails";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/timeline" element={<Timeline />} />
           <Route path="/account/*" element={<Account />} />
           <Route path="/signin" element={<Signin />} />
+          <Route path="/movieDetails/:cardId" element={<CardDetails />} />
         </Routes>
       </div>
     </Provider>

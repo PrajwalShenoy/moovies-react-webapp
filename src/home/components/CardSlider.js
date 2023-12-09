@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Card from './Card';
 import "./index.css";
+import {Link} from "react-router-dom";
 
 const CardSlider = ({ title }) => {
     const uid = title.replace(/\s+/g, '');
@@ -13,7 +14,7 @@ const CardSlider = ({ title }) => {
                     <div className="carousel-item active ">
                         <div className='row d-flex'>
                             <div className='col'>
-                                <Card title="Card 1" description="Description 1" imageUrl="https://picsum.photos/200/300" />
+                                <Card title="Card 1" description="Description 1" imageUrl="https://picsum.photos/200/300" cardId="1" />
                             </div>
                             <div className='col'>
                                 <Card title="Card 2" description="Description 2" imageUrl="https://picsum.photos/200/300" />
@@ -87,6 +88,7 @@ const CardSlider = ({ title }) => {
                 </button>
             </div>
         </div>
+
     );
 };
 

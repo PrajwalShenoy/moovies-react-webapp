@@ -7,3 +7,43 @@
     margin-left: 150px;
     color: #f0c20e;
 }
+
+.card-details-container {
+    display: flex;
+    margin-left: 100px;
+    margin-top: 100px;
+    margin-right: 100px;
+}
+
+.card-image {
+    flex: 1;
+}
+
+.card-text {
+    flex: 2;
+    margin-left: 20px;
+    color:white !important;
+    font-size: 20px;
+}
+.card-heading{
+    color: #f0c20e;
+}
+
+.card-image img {
+    max-width: 70%;
+    height: auto;
+}
+.watchlist-button {
+    position: absolute;
+    bottom: 250px;
+    right: 300px;
+    padding: 8px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.watchlist-button:hover {
+    background-color: #2980b9;
+}

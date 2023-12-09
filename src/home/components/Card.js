@@ -1,17 +1,20 @@
+// Card.js
 import React from 'react';
-import { Card as BootstrapCard } from 'react-bootstrap';
-import "./index.css";
+import { Link } from 'react-router-dom';
 
-function Card({ title, description, imageUrl }) {
+function Card({ title, description, imageUrl, cardId }) {
+    console.log(cardId);
     return (
-        <div className='card'>
-            <img src={imageUrl} alt="..."/>
-            <div className='card-body'>
-                <h5 className='card-title'>{title}</h5>
-                <p className='card-text'>{description}</p>
+        <Link to={`/movieDetails/${cardId}`} className='card-link'>
+            <div className='card'>
+                <img src={imageUrl} alt="..." />
+                <div className='card-body'>
+                    <h5 className='card-title'>{title}</h5>
+                    <p className='card-text'>{description}</p>
+                </div>
             </div>
-        </div>
+        </Link>
     );
-};
+}
 
 export default Card;
