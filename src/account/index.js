@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useLocation, Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
+import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import "./index.css"
 import User from "./user";
@@ -8,17 +9,36 @@ import Watchlist from "./watchlist";
 import Users from "./users";
 import Following from "./following";
 import Followers from "./followers";
-import { clearUser } from "./user/userReducer";
+import { setUser, clearUser } from "./user/userReducer";
+import * as client from "../api/client";
 
 const Account = () => {
 
     const { userIsSet } = useSelector((state) => state.userReducer);
     const { currentUser } = useSelector((state) => state.userReducer);
-
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const logout = () => {
+        client.signout();
         dispatch(clearUser());
+        navigate("/home");
     };
+
+    // const getCurrentUser = async () => {
+    //     let loggedInUser = await client.getSessionAccount();
+    //     return loggedInUser;
+    // };
+
+    // useEffect(() => {
+    //     getCurrentUser().then((user) => {
+    //         if (user) {
+    //             dispatch(setUser(user));
+    //         }
+    //         else {
+    //             navigate("/account/users");
+    //         }
+    //     });
+    // },[]);
 
     return (
         <div className="d-flex mainframe">

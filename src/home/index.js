@@ -6,8 +6,8 @@ const Home = () => {
             <CardSlider title="Watch Next" />
             <CardSlider title="New Movies" />
             <CardSlider title="Action" />
-            <CardSlider title="Mystery" />
-            <CardSlider title="Popular" />
+            <CardSlider title="Comedy" />
+            <CardSlider title="Thriller" />
         </div>
     );
 };

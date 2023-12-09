@@ -1,23 +1,38 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateUser } from './userReducer';
+import { setUser, updateUser } from './userReducer';
 import { useNavigate } from 'react-router';
 import "./index.css";
+import * as client from '../../api/client';
 
 const User = () => {
+    const dispatch = useDispatch();
+
+    // const getCurrentUser = async () => {
+    //     let loggedInUser = await client.getSessionAccount();
+    //     return loggedInUser;
+    // };
+
+    // useEffect(() => {
+    //     getCurrentUser().then((user) => {
+    //         if (user) {
+    //             dispatch(setUser(user));
+    //         }
+    //     });
+    // },[]);
+
     const { currentUser } = useSelector((state) => state.userReducer);
     const [userData, setUserData] = useState(currentUser);
     const [showPassword, setShowPassword] = useState(false);
-    const dispatch = useDispatch();
     
     const { userIsSet } = useSelector((state) => state.userReducer);
     const navigate = useNavigate();
-    useEffect(() => {
-        if (!userIsSet) {
-            navigate("/account/users");
-        }
-    }, [userIsSet]);
+    // useEffect(() => {
+    //     if (!userIsSet) {
+    //         navigate("/account/users");
+    //     }
+    // }, [userIsSet]);
 
     useEffect(() => {
         populateForm();

@@ -47,3 +47,27 @@
 .watchlist-button:hover {
     background-color: #2980b9;
 }
+
+.custom-card {
+    display: flex;
+    flex-direction: column;
+    max-width: 200px;
+    min-width: 200px;
+    align-items: center;
+    text-wrap: normal;
+    background-color: #333131 !important;
+    color: #f0c20e !important;
+    border-radius: 5%;
+}
+
+.card-image {
+    width: 200px;
+    height: 300px;
+    border-top-right-radius: 5%;
+    border-top-left-radius: 5%;
+}
+
+.card-title {
+    padding: 5px;
+    text-decoration: none !important;
+}

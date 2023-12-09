@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { setUser, updateUser, clearUser } from '../account/user/userReducer';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
+import * as client from '../api/client';
 import './index.css';
 
 const SignIn = () => {
@@ -12,18 +13,14 @@ const SignIn = () => {
     const dispatch = useDispatch();
     const { userIsSet } = useSelector((state) => state.userReducer);
     const navigate = useNavigate();
-    useEffect(() => {
-        if (userIsSet) {
-            navigate("/home");
-        }
-    }, [userIsSet]);
-    const defaultUser = {
-        username: username,
-        firstName: "Prajwal",
-        lastName: "Shenoy",
-        email: "prajwalkpshenoy@gmail.com",
-        password: password,
-        memberSince: "1998-06-28"
+
+    let currentUser = {
+        username: "",
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        memberSince: ""
     };
 
     const togglePasswordVisibility = () => {
@@ -35,9 +32,13 @@ const SignIn = () => {
         setPassword("");
     };
 
-    const handleSignIn = (e) => {
-        dispatch(setUser(defaultUser));
+    const handleSignIn = async () => {
+        currentUser = await client.signin({username: username, password: password});
+        dispatch(setUser(currentUser));
         resetFields();
+        if (currentUser) {
+            navigate("/home");
+        }
     };
 
     return (

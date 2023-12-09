@@ -1,24 +1,5 @@
-// CardDetails.js
 import React from 'react';
 import { useParams } from 'react-router-dom';
-
-// const CardDetails = ({ cards }) => {
-//     const { cardId } = useParams();
-//     const card = cards.find(card => card.cardId.replace(/\s+/g, '') === cardId);
-//     console.log(card.cardId);
-//
-//     if (!card) {
-//         return <div>Card not found</div>;
-//     }
-//
-//     return (
-//         <div>
-//             <h1>{card.title}</h1>
-//             <img src={card.imageUrl} alt="Card" />
-//             <p>{card.description}</p>
-//         </div>
-//     );
-// };
 
 const CardDetails = () => {
     const { cardId } = useParams();

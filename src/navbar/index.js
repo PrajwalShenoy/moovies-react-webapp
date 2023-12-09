@@ -1,10 +1,38 @@
 import React from "react";
 import './index.css';
 import { Link } from 'react-router-dom';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate, useLocation } from "react-router";
 import { useEffect } from "react";
+import { setUser, clearUser } from "../account/user/userReducer";
+import * as client from "../api/client";
 
 function Navbar() {
+    const navigate = useNavigate();
+    const location = useLocation();
+    const dispatch = useDispatch();
+
+    console.log(location.pathname);
+
+    const getCurrentUser = async () => {
+        let loggedInUser = await client.getSessionAccount();
+        return loggedInUser;
+    };
+
+    useEffect(() => {
+        getCurrentUser().then((user) => {
+            if (user) {
+                dispatch(setUser(user));
+            }
+            else {
+                switch (location.pathname) {
+                    case "/account":
+                        navigate("/account/users");
+                        break;
+                }
+            }
+        });
+    },[location.pathname]);
 
     const { userIsSet } = useSelector((state) => state.userReducer);
     const { currentUser } = useSelector((state) => state.userReducer);
@@ -40,7 +68,7 @@ function Navbar() {
                         { 
                             !userIsSet && 
                             <li className="nav-item">
-                                <Link className="nav-link" to="/account">Account</Link>
+                                <Link className="nav-link" to="/account/users">Account</Link>
                             </li>
                         }
                         { 

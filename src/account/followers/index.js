@@ -27,11 +27,11 @@ const Followers = () => {
 
     const { userIsSet } = useSelector((state) => state.userReducer);
     const navigate = useNavigate();
-    useEffect(() => {
-        if (!userIsSet) {
-            navigate("/account/users");
-        }
-    }, [userIsSet]);
+    // useEffect(() => {
+    //     if (!userIsSet) {
+    //         navigate("/account/users");
+    //     }
+    // }, [userIsSet]);
 
     const userData = [
         { userId: 1, username: "Rakshit", followers: [2, 3], following: [2] },

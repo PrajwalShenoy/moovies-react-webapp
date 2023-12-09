@@ -9,11 +9,11 @@ const Following = () => {
     
     const { userIsSet } = useSelector((state) => state.userReducer);
     const navigate = useNavigate();
-    useEffect(() => {
-        if (!userIsSet) {
-            navigate("/account/users");
-        }
-    }, [userIsSet]);
+    // useEffect(() => {
+    //     if (!userIsSet) {
+    //         navigate("/account/users");
+    //     }
+    // }, [userIsSet]);
 
     const [users, setUsers] = useState([]);
     const [currentUser, setCurrentUser] = useState(null);
