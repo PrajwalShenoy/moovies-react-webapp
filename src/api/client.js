@@ -50,3 +50,13 @@ export const getMovieDetails = async (id) => {
     const response = await request.get(`${BACKEND_URL}/api/movies/${id}`);
     return response.data;
 };
+
+export const addToWatchlist = async (payload) => {
+    const response = await request.post(`${BACKEND_URL}/api/watchlist`, payload);
+    return response.data;
+};
+
+export const getWatchlist = async () => {
+    const response = await request.get(`${BACKEND_URL}/api/watchlist`);
+    return response.data;
+};

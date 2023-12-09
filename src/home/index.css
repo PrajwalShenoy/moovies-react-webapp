@@ -2,3 +2,41 @@
     display: flex;
     justify-items: center;
 }
+
+.card-details-container {
+    display: flex;
+    margin-left: 100px;
+    margin-top: 100px;
+    margin-right: 100px;
+}
+
+.card-image {
+    flex: 1;
+}
+
+.card-text {
+    flex: 2;
+    margin-left: 20px;
+    color:white !important;
+    font-size: 20px;
+}
+.card-heading{
+    color: #f0c20e;
+}
+
+.card-image img {
+    max-width: 70%;
+    height: auto;
+}
+
+.watchlist-button {
+    color: #f0c20e !important;
+    background-color: #333131 !important;
+    border-color: #f0c20e !important;
+}
+
+.watchlist-button:hover, .watchlist-button:focus, .watchlist-button:active, .watchlist-button.active, .open>.dropdown-toggle.watchlist-button{
+    color: #f0c20e !important;
+    background-color: #000000 !important;
+    border-color: #f0c20e !important;
+}

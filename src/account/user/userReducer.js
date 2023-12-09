@@ -8,7 +8,10 @@ const initialState = {
         lastName: "",
         email: "",
         password: "",
-        memberSince: ""
+        memberSince: "",
+        followers: [],
+        following: [],
+        watchlist: []
     }
 };
 
@@ -31,12 +34,21 @@ const userSlice = createSlice({
                 lastName: "",
                 email: "",
                 password: "",
-                memberSince: ""
+                memberSince: "",
+                followers: [],
+                following: [],
+                watchlist: []
             };
+        },
+        addToWatchList: (state, action) => {
+            state.currentUser.watchlist.push(action.payload);
+        },
+        removeFromWatchList: (state, action) => {
+            state.currentUser.watchlist = state.currentUser.watchlist.filter((movie) => movie !== action.payload);
         }
     },
 
 });
 
-export const { setUser, updateUser, clearUser } = userSlice.actions;
+export const { setUser, updateUser, clearUser, addToWatchList, removeFromWatchList } = userSlice.actions;
 export default userSlice.reducer;
