@@ -11,6 +11,7 @@ import Following from "./following";
 import Followers from "./followers";
 import { setUser, clearUser } from "./user/userReducer";
 import * as client from "../api/client";
+import AccountDetails from "./users/AccountDetails";
 
 const Account = () => {
 
@@ -118,6 +119,7 @@ const Account = () => {
                     <Route path="following" element={<Following />} />
                     <Route path="watchlist" element={<Watchlist />} />
                     <Route path="activities" element={<h1>Activities</h1>} />
+                    <Route path="users/:userId" element={<AccountDetails />} />
                 </Routes>
             </div>
         </div>

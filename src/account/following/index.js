@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
 import * as client from '../../api/client';
+import {Link} from "react-router-dom";
 
 const Following = () => {
     const [users, setUsers] = useState([]);
@@ -58,8 +59,12 @@ const Following = () => {
                 ) : (
                      currentUser.following.map((followerUserId, index) => (
                          <tr key={index}>
-                             <td>{users.find((user) => user.id === followerUserId)?.firstName + " "+
-                                  users.find((user) => user.id === followerUserId)?.lastName}</td>
+                             <td>
+                                 <Link className="custom-link" to={`/account/users/${followerUserId}`}>
+                                     {users.find((user) => user.id === followerUserId)?.firstName + " "+
+                                  users.find((user) => user.id === followerUserId)?.lastName}
+                                 </Link>
+                             </td>
                          </tr>
                      ))
                  )}

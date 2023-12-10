@@ -6,3 +6,10 @@
 .heading-color{
     --bs-table-color: #f0c20e !important;
 }
+
+.custom-link {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+
+}

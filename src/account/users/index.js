@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './index.css';
 import * as client from "../../api/client";
+import {Link} from "react-router-dom";
 
 const Users = () => {
     const [users, setUsers] = useState([]);
@@ -60,7 +61,10 @@ const Users = () => {
                 <tbody>
                 {users.map((user, index) => (
                     <tr key={index}>
-                        <td>{user.firstName + ' ' + user.lastName}</td>
+                        <td>
+                            <Link className="custom-link" to={`/account/users/${user.id}`}>
+                                {user.firstName + ' ' + user.lastName}
+                            </Link></td>
                         <td>{user.followers.length}</td>
                         <td>{user.following.length}</td>
                         <td>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
+import { useNavigate, Link } from 'react-router-dom'; // Import Link from react-router-dom
 import axios from 'axios';
 import * as client from '../../api/client';
 
@@ -58,8 +58,12 @@ const Followers = () => {
                 ) : (
                      currentUser.followers.map((followerUserId, index) => (
                          <tr key={index}>
-                             <td>{users.find((user) => user.id === followerUserId)?.firstName + " "
-                                  +users.find((user) => user.id === followerUserId)?.lastName}</td>
+                             <td>
+                                  <Link className="custom-link" to={`/account/users/${followerUserId}`}>
+                                     {users.find((user) => user.id === followerUserId)?.firstName}{' '}
+                                     {users.find((user) => user.id === followerUserId)?.lastName}
+                                 </Link>
+                             </td>
                          </tr>
                      ))
                  )}

@@ -24,6 +24,8 @@ function App() {
           <Route path="/account/*" element={<Account />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/movieDetails/:cardId" element={<CardDetails />} />
+
+
         </Routes>
       </div>
     </Provider>
