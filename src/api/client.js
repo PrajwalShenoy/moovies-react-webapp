@@ -87,3 +87,13 @@ export const unfollowUser = async (userId, followId) => {
     return response.data;
 };
 
+export const getUserRoles = async (userId) => {
+    const response = await request.get(`${BACKEND_URL}/api/users/roles/${userId}`);
+    console.log(response.data);
+    return response.data;
+};
+
+export const setUsersCurrentRole = async (role) => {
+    const response = await request.post(`${BACKEND_URL}/api/users/setrole`, {"role": role});
+    return response.data;
+};
