@@ -87,7 +87,7 @@ const Account = () => {
                         {
                             userIsSet &&
                             <li className="nav-item">
-                                <Link to="/account/watchlist/:userId" className="nav-link ">
+                                <Link to="/account/watchlist/" className="nav-link ">
                                     <svg className="bi me-2" width="16" height="16"></svg>
                                     Watchlist
                                 </Link>
@@ -117,7 +117,7 @@ const Account = () => {
                     <Route path="users" element={<Users />} />
                     <Route path="followers" element={<Followers />} />
                     <Route path="following" element={<Following />} />
-                    <Route path="watchlist/:userId" element={<Watchlist />} />
+                    <Route path="watchlist/" element={<Watchlist />} />
                     <Route path="activities" element={<h1>Activities</h1>} />
                     <Route path="users/:userId" element={<AccountDetails />} />
                 </Routes>
