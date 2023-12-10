@@ -9,6 +9,7 @@ import Account from "./account";
 import Signin from "./signin";
 import store from "./store";
 import CardDetails from "./home/components/CardDetails";
+import MovieSearch from "./MovieSearch";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/timeline" element={<Timeline />} />
+          <Route path="/search" element={<MovieSearch/>}/>
           <Route path="/account/*" element={<Account />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/movieDetails/:cardId" element={<CardDetails />} />

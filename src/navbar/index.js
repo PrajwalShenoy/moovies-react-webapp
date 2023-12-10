@@ -38,7 +38,7 @@ function Navbar() {
     return (
         <nav className="navbar navbar-expand-lg customise-navbar">
             <div className="container-fluid">
-                <Link className="navbar-brand logo" to="/">Filmy Fiesta</Link>
+                <Link className="navbar-brand logo" to="/">Film Fiesta</Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -62,6 +62,14 @@ function Navbar() {
                             <li className="nav-item">
                                 <Link className="nav-link" to="/timeline">Timeline</Link>
                             </li>
+
+                        }
+                        {
+                            !userIsSet &&
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/search">Search</Link>
+                            </li>
+
                         }
                         { 
                             !userIsSet && 
@@ -69,7 +77,7 @@ function Navbar() {
                                 <Link className="nav-link" to="/account/users">Account</Link>
                             </li>
                         }
-                        { 
+                        {
                             userIsSet && 
                             <li className="nav-item dropdown">
                                 <Link className="nav-link dropdown-toggle" to="#" id="dropdown09" data-bs-toggle="dropdown" aria-expanded="false">Role</Link>
@@ -81,10 +89,10 @@ function Navbar() {
                             </li>
                         }
                     </ul>
-                    <form>
-                        <input className="form-control" type="text" placeholder="Search" aria-label="Search"/>
-                    </form>
-                    <button className="btn btn-success ms-2" type="submit">Search</button>
+                    {/*<form>*/}
+                    {/*    <input className="form-control" type="text" placeholder="SearchBox" aria-label="SearchBox"/>*/}
+                    {/*</form>*/}
+                    {/*<button className="btn btn-success ms-2" type="submit">SearchBox</button>*/}
                 </div>
             </div>
         </nav>

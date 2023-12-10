@@ -86,3 +86,4 @@ export const unfollowUser = async (userId, followId) => {
     const response = await request.post(`${BACKEND_URL}/api/users/${userId}/unfollow/${followId}`);
     return response.data;
 };
+
