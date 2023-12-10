@@ -4,12 +4,14 @@ import "./index.css";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import * as client from "../../api/client";
+import { useSelector } from 'react-redux';
 
 const CardSlider = ({ title }) => {
     const uid = title.replace(/\s+/g, '');
     const refid = `#${uid}`;
     const [movieContent, setMovieContent] = useState([[]]);
     const [allMovies, setAllMovies] = useState([]);
+    const { currentUser } = useSelector((state) => state.userReducer);
 
     const processMovieData = (data) => {
         let splitData = [];
@@ -21,8 +23,13 @@ const CardSlider = ({ title }) => {
     };
 
     useEffect(() => {
-        client.getSpecificMovies(uid).then((data) => processMovieData(data));
+        if (uid === "WatchNext") {
+            client.getWatchListDetails(currentUser['id']).then((data) => processMovieData(data));
+        } else {
+            client.getSpecificMovies(uid).then((data) => processMovieData(data));
+        }
     }, []);
+
     return (
         <div>
             <h1 className="carousel-title mt-5">{title}</h1>

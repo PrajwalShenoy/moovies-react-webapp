@@ -60,3 +60,8 @@ export const getWatchlist = async () => {
     const response = await request.get(`${BACKEND_URL}/api/watchlist`);
     return response.data;
 };
+
+export const getWatchListDetails = async (userId) => {
+    const response = await request.get(`${BACKEND_URL}/api/watchlist/${userId}`);
+    return response.data;
+};
