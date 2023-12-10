@@ -45,10 +45,22 @@ const userSlice = createSlice({
         },
         removeFromWatchList: (state, action) => {
             state.currentUser.watchlist = state.currentUser.watchlist.filter((movie) => movie !== action.payload);
+        },
+        followUser: (state, action) => {
+            state.currentUser.following.push(action.payload);
+        },
+        unfollowUser: (state, action) => {
+            state.currentUser.following = state.currentUser.following.filter((user) => user !== action.payload);
         }
     },
 
 });
 
-export const { setUser, updateUser, clearUser, addToWatchList, removeFromWatchList } = userSlice.actions;
+export const { setUser, 
+    updateUser, 
+    clearUser, 
+    addToWatchList, 
+    removeFromWatchList,
+    followUser,
+    unfollowUser } = userSlice.actions;
 export default userSlice.reducer;

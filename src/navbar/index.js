@@ -12,8 +12,6 @@ function Navbar() {
     const location = useLocation();
     const dispatch = useDispatch();
 
-    console.log(location.pathname);
-
     const getCurrentUser = async () => {
         let loggedInUser = await client.getSessionAccount();
         return loggedInUser;

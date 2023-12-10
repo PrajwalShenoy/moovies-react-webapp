@@ -8,8 +8,8 @@ const AccountDetails = () => {
     const [movieContent, setMovieContent] = useState([[]]);
     const [allMovies, setAllMovies] = useState([]);
     const [userDetails, setUserDetails] = useState({
-                                                       username: ""
-                                                   });
+        username: ""
+    });
     const { userId } = useParams();
 
     useEffect(() => {
@@ -43,7 +43,7 @@ const AccountDetails = () => {
     return (
         <div className="container main-container">
             <h1 className="card-heading">User Details</h1>
-            <hr/>
+            <hr />
             <p className="card-text">  <strong className="card-heading">
                 Username: </strong> {userDetails.username}</p>
             <p className="card-text"> <strong className="card-heading">
@@ -52,8 +52,8 @@ const AccountDetails = () => {
                 Last Name: </strong>{userDetails.lastName}</p>
             <p className="card-text"> <strong className="card-heading">
                 Member Since:  </strong>{userDetails.memberSince}</p>
-            <br/>
-            <br/>
+            <br />
+            <br />
             <h1 className="card-heading">Favourite Movies:</h1>
 
             <div className="row d-flex">

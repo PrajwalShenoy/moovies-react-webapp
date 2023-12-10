@@ -56,6 +56,12 @@ export const addToWatchlist = async (payload) => {
     return response.data;
 };
 
+export const removeFromWatchlist = async (movieId) => {
+    console.log(movieId);
+    const response = await request.delete(`${BACKEND_URL}/api/watchlist/${movieId}`);
+    return response.data;
+}
+
 export const getWatchlist = async () => {
     const response = await request.get(`${BACKEND_URL}/api/watchlist`);
     return response.data;
@@ -63,5 +69,20 @@ export const getWatchlist = async () => {
 
 export const getWatchListDetails = async (userId) => {
     const response = await request.get(`${BACKEND_URL}/api/watchlist/${userId}`);
+    return response.data;
+};
+
+export const findAllUsers = async () => {
+    const response = await request.get(`${BACKEND_URL}/api/users`);
+    return response.data;
+};
+
+export const followUser = async (userId, followId) => {
+    const response = await request.post(`${BACKEND_URL}/api/users/${userId}/follow/${followId}`);
+    return response.data;
+};
+
+export const unfollowUser = async (userId, followId) => {
+    const response = await request.post(`${BACKEND_URL}/api/users/${userId}/unfollow/${followId}`);
     return response.data;
 };

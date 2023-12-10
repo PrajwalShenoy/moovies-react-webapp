@@ -3,8 +3,8 @@ import axios from "axios";
 export const BASE_URL = "https://localhost:4000";
 export const USERS_URL = `${BASE_URL}/api/users`;
 const request = axios.create({
-                                 withCredentials: true,
-                             });
+    withCredentials: true,
+});
 
 export const signin = async (credentials) => {
     console.log(`${USERS_URL}/signin`);

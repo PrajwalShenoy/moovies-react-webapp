@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./index.css";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { removeFromWatchList } from '../user/userReducer';
 import * as client from "../../api/client";
 
 const Watchlist = () => {
     const [movieContent, setMovieContent] = useState([]);
     const { currentUser } = useSelector((state) => state.userReducer);
+    const dispatch = useDispatch();
 
     const processMovieData = (data) => {
         setMovieContent(data);
@@ -17,8 +19,14 @@ const Watchlist = () => {
         }
     }, [currentUser.id]);
 
+    const removeFromWatchlist = async (movieId) => {
+        await client.removeFromWatchlist(movieId.toString());
+        await dispatch(removeFromWatchList(movieId));
+        setMovieContent(movieContent.filter((movie) => movie.id !== movieId));
+    };
+
     return (
-        <div className="container main-container">
+        <div className="container main-container p-5">
             <h1 className="card-heading">Watchlist</h1>
             {movieContent.map((movie) => (
                 <div key={movie.id} className="container d-flex mt-5 mb-2 timelineCard">
@@ -37,10 +45,10 @@ const Watchlist = () => {
                                 <p><strong>Released:</strong> {movie.release_date}</p>
                             </div>
                             <div className="d-flex">
-                                <button type="button" className="btn btn-success me-3">
+                                <button type="button" className="btn btn-success me-3" onClick={() => removeFromWatchlist(movie.id)}>
                                     Mark as watched
                                 </button>
-                                <button type="button" className="btn btn-danger">
+                                <button type="button" className="btn btn-fail" onClick={() => removeFromWatchlist(movie.id)}>
                                     Remove from watchlist
                                 </button>
                             </div>
