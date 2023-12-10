@@ -3,7 +3,7 @@ import './index.css';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { setUser, clearUser } from "../account/user/userReducer";
 import * as client from "../api/client";
 
@@ -11,6 +11,7 @@ function Navbar() {
     const navigate = useNavigate();
     const location = useLocation();
     const dispatch = useDispatch();
+    const [currentRole, setCurrentRole] = useState("User");
 
     const getCurrentUser = async () => {
         let loggedInUser = await client.getSessionAccount();
@@ -30,7 +31,12 @@ function Navbar() {
                 }
             }
         });
-    },[location.pathname]);
+    },[location.pathname, currentRole]);
+
+    const handleRoleClick = async (role) => {
+        const response = await client.setUsersCurrentRole(role);
+        setCurrentRole(role);
+    };
 
     const { userIsSet } = useSelector((state) => state.userReducer);
     const { currentUser } = useSelector((state) => state.userReducer);
@@ -81,9 +87,16 @@ function Navbar() {
                             <li className="nav-item dropdown">
                                 <Link className="nav-link dropdown-toggle" to="#" id="dropdown09" data-bs-toggle="dropdown" aria-expanded="false">Role</Link>
                                 <ul className="dropdown-menu" aria-labelledby="dropdown09">
-                                    <li><Link className="dropdown-item" to="#">User</Link></li>
+                                    {
+                                        currentUser.role.map((role) => {
+                                            return (
+                                                <li><Link className="dropdown-item" to={location.pathname} onClick={() => handleRoleClick(role)}>{role}</Link></li>
+                                            );
+                                        })
+                                    }
+                                    {/* <li><Link className="dropdown-item" to="#">User</Link></li>
                                     <li><Link className="dropdown-item" to="#">Moderator</Link></li>
-                                    <li><Link className="dropdown-item" to="#">Admin</Link></li>
+                                    <li><Link className="dropdown-item" to="#">Admin</Link></li> */}
                                 </ul>
                             </li>
                         }
