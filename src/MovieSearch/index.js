@@ -7,6 +7,7 @@ const MovieSearch = () => {
     const [allMovies, setAllMovies] = useState([]);
     const [searchValue, setSearchValue] = useState("");
     const [movieContent, setMovieContent] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     const processMovieData = (data) => {
         let splitData = [];
@@ -14,9 +15,11 @@ const MovieSearch = () => {
             splitData.push(data.slice(i, i + 12));
         }
         setMovieContent(splitData);
+        setLoading(false);
     };
 
     const getMovieRequest = async () => {
+        setLoading(true);
         const url = `http://localhost:4000/api/search?query=${searchValue}`;
 
         try {
@@ -31,7 +34,21 @@ const MovieSearch = () => {
     };
 
     useEffect(() => {
-        getMovieRequest();
+
+        const storedSearchValue = sessionStorage.getItem("searchValue");
+        if (storedSearchValue) {
+            setSearchValue(storedSearchValue);
+        }
+    }, []);
+
+    useEffect(() => {
+        sessionStorage.setItem("searchValue", searchValue);
+    }, [searchValue]);
+
+    useEffect(() => {
+        if (searchValue) {
+            getMovieRequest(searchValue);
+        }
     }, [searchValue]);
 
     return (
