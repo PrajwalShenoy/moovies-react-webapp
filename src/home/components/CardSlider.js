@@ -23,7 +23,7 @@ const CardSlider = ({ title }) => {
     };
 
     useEffect(() => {
-        if (uid === "WatchNext") {
+        if (uid === "WatchNext" && currentUser['id']) {
             client.getWatchListDetails(currentUser['id']).then((data) => processMovieData(data));
         } else {
             client.getSpecificMovies(uid).then((data) => processMovieData(data));
