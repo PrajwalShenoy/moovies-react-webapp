@@ -1,29 +1,53 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./index.css";
-import WatchlistItem from "./components/watchlistItem";
-import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
+import * as client from "../../api/client";
 
 const Watchlist = () => {
-    const { userIsSet } = useSelector((state) => state.userReducer);
-    const navigate = useNavigate();
-    // useEffect(() => {
-    //     if (!userIsSet) {
-    //         navigate("/account/users");
-    //     }
-    // }, [userIsSet]);
+    const [movieContent, setMovieContent] = useState([]);
+    const { currentUser } = useSelector((state) => state.userReducer);
 
-    const content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc scelerisque viverra mauris in aliquam sem. Nunc sed velit dignissim sodales ut. Montes nascetur ridiculus mus mauris vitae ultricies leo. Facilisis magna etiam tempor orci eu lobortis elementum nibh. Dolor purus non enim praesent elementum facilisis. Sit amet luctus venenatis lectus magna fringilla urna porttitor rhoncus. Placerat vestibulum lectus mauris ultrices eros in cursus. Laoreet suspendisse interdum consectetur libero id faucibus.";
+    const processMovieData = (data) => {
+        setMovieContent(data);
+    };
+
+    useEffect(() => {
+        if (currentUser.id) {
+            client.getWatchListDetails(currentUser.id).then((data) => processMovieData(data));
+        }
+    }, [currentUser.id]);
+
     return (
-        <div className='container p-4 main-container'>
-            <h1>Watchlist</h1>
-            <WatchlistItem imageUrl={"https://picsum.photos/180/250"} movieName={"Movie name"} description={content}/>
-            <WatchlistItem imageUrl={"https://picsum.photos/180/250"} movieName={"Movie name"} description={content}/>
-            <WatchlistItem imageUrl={"https://picsum.photos/180/250"} movieName={"Movie name"} description={content}/>
-            <WatchlistItem imageUrl={"https://picsum.photos/180/250"} movieName={"Movie name"} description={content}/>
-            <WatchlistItem imageUrl={"https://picsum.photos/180/250"} movieName={"Movie name"} description={content}/>
-            <WatchlistItem imageUrl={"https://picsum.photos/180/250"} movieName={"Movie name"} description={content}/>
+        <div className="container main-container">
+            <h1 className="card-heading">Watchlist</h1>
+            {movieContent.map((movie) => (
+                <div key={movie.id} className="container d-flex mt-5 mb-2 timelineCard">
+                    <div className="col-md-3">
+                        <img
+                            src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+                            alt={movie.title}
+                            className="card-image"
+                        />
+                    </div>
+                    <div className="col-md-9">
+                        <div className="container m-3">
+                            <h4 className="card-heading">{movie.title}</h4>
+                            <div className="mt-3">
+                                <p>{movie.overview}</p>
+                                <p><strong>Released:</strong> {movie.release_date}</p>
+                            </div>
+                            <div className="d-flex">
+                                <button type="button" className="btn btn-success me-3">
+                                    Mark as watched
+                                </button>
+                                <button type="button" className="btn btn-danger">
+                                    Remove from watchlist
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ))}
         </div>
     );
 };
