@@ -29,6 +29,10 @@ const Account = () => {
         navigate("/home");
     };
 
+    useEffect(() => {
+        setCurrentLocation(location.pathname);
+    }, [location.pathname]);
+
     return (
         <div className="d-flex mainframe">
             { userIsSet &&
@@ -136,7 +140,6 @@ const Account = () => {
                     <Route path="adminportal" element={<Admin />} />
                     <Route path="roles" element={<Roles />} />
                     <Route path="watchlist" element={<Watchlist />} />
-                    {/* <Route path="activities" element={<h1>Activities</h1>} /> */}
                     <Route path="users/:userId" element={<AccountDetails />} />
                 </Routes>
             </div>

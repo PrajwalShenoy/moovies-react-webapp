@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { addToWatchList } from '../../account/user/userReducer';
 import * as client from "../../api/client";
+import { Link } from "react-router-dom";
 import "../index.css";
 
 const CardDetails = () => {
@@ -53,9 +54,13 @@ const CardDetails = () => {
 
     const postReview = async () => {
         const response = await client.postReview(cardId, reviewText);
-        console.log(response);
         toggleReviewBox();
         setReviews([response, ...reviews]);
+    };
+
+    const deleteReview = async (reviewId) => {
+        const response = await client.deleteReview(reviewId);
+        setReviews(reviews.filter(review => review.id !== reviewId));
     };
 
     return (
@@ -131,13 +136,19 @@ const CardDetails = () => {
                     {reviews.map(review => (
                         <div key={review.id} className="container d-flex mt-3 mb-2 timelineCard card-text">
                             <div className="container m-2">
-                                <div className="d-flex align-items-center">
-                                    <p className="ms-3 timelinecard-username">{review.username}</p>
-                                </div>
+                                <Link className="d-flex align-items-center review-title" to={`/account/users/${review.userId}`}>
+                                    <p className="ms-3">{review.username}</p>
+                                </Link>
                                 <div>
                                     <p className="card-text">{review.review}</p>
                                 </div>
                             </div>
+                            {
+                                currentUser.currentRole == "Moderator" &&
+                                <div className='d-flex align-items-center justify-content-center'>
+                                    <button className="btn btn-fail" onClick={() => deleteReview(review.id)}>Delete</button>
+                                </div>
+                            }
                         </div>
                     ))}
 

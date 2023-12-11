@@ -46,3 +46,8 @@
     background-color: #000000 !important;
     border-color: #f0c20e !important;
 }
+
+.review-title {
+    color: #f0c20e !important;
+    text-decoration: none !important;
+}

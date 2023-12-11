@@ -6,6 +6,7 @@ import { useNavigate, useLocation } from "react-router";
 import { useEffect, useState } from "react";
 import { setUser, clearUser } from "../account/user/userReducer";
 import * as client from "../api/client";
+import Users from "../account/users";
 
 function Navbar() {
     const navigate = useNavigate();
@@ -16,6 +17,12 @@ function Navbar() {
     const getCurrentUser = async () => {
         let loggedInUser = await client.getSessionAccount();
         return loggedInUser;
+    };
+
+    const logout = () => {
+        client.signout();
+        dispatch(clearUser());
+        navigate("/home");
     };
 
     useEffect(() => {
@@ -48,7 +55,7 @@ function Navbar() {
     const { currentUser } = useSelector((state) => state.userReducer);
 
     return (
-        <nav className="navbar navbar-expand-lg customise-navbar">
+        <nav className="navbar navbar-expand-lg customise-navbar ">
             <div className="container-fluid">
                 <Link className="navbar-brand logo" to="/">Film Fiesta</Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,7 +79,7 @@ function Navbar() {
                         {
                             userIsSet &&
                             <li className="nav-item">
-                                <Link className="nav-link" to="/timeline">Timeline</Link>
+                                <Link className="nav-link" to="/account/watchlist">Watchlist</Link>
                             </li>
 
                         }
@@ -85,7 +92,9 @@ function Navbar() {
                         {
                             !userIsSet &&
                             <li className="nav-item">
-                                <Link className="nav-link" to="/account/users">Account</Link>
+                                <Link className="nav-link" to="/account/users">
+                                    {userIsSet ? "Account" : "Users"}
+                                </Link>
                             </li>
                         }
                         {
@@ -100,13 +109,16 @@ function Navbar() {
                                             );
                                         })
                                     }
-                                    {/* <li><Link className="dropdown-item" to="#">User</Link></li>
-                                    <li><Link className="dropdown-item" to="#">Moderator</Link></li>
-                                    <li><Link className="dropdown-item" to="#">Admin</Link></li> */}
                                 </ul>
                             </li>
                         }
                     </ul>
+                    {
+                        userIsSet &&
+                        <button className="nav-link signout-button me-3" onClick={logout}>
+                            Sign out
+                        </button>
+                    }
                     {/*<form>*/}
                     {/*    <input className="form-control" type="text" placeholder="SearchBox" aria-label="SearchBox"/>*/}
                     {/*</form>*/}

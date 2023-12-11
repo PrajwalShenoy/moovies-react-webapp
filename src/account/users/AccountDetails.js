@@ -41,9 +41,9 @@ const AccountDetails = () => {
     };
 
     return (
-        <div className="container main-container">
+        <div className="container main-container p-5">
             <h1 className="card-heading">User Details</h1>
-            <hr />
+            <br />
             <p className="card-text">  <strong className="card-heading">
                 Username: </strong> {userDetails.username}</p>
             <p className="card-text"> <strong className="card-heading">
@@ -66,7 +66,7 @@ const AccountDetails = () => {
                                         movie.map((card) => {
                                             return (
                                                 <div className='col'>
-                                                    <Card title={card.title} description={card.overview} imageUrl={"https://image.tmdb.org/t/p/original" + card.poster_path} cardId={card.id} />
+                                                    <Card className="mb-3" title={card.title} description={card.overview} imageUrl={"https://image.tmdb.org/t/p/original" + card.poster_path} cardId={card.id} />
                                                 </div>
                                             );
                                         })

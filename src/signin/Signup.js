@@ -30,9 +30,10 @@ const SignUp = () => {
         }));
     };
 
-    const saveChanges = () => {
-        console.log('Updated User Data:', userData);
-        alert(userData.firstName + ' ' + userData.lastName + ' has been updated.');
+    const saveChanges = async () => {
+        const response = await client.signup(userData);
+        alert(`Account created successfully for ${response.firstName} ${response.lastName}!`)
+        setUserData(initialUserData);
     };
 
     const togglePasswordVisibility = () => {

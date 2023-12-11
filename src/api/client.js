@@ -1,8 +1,5 @@
 import axios from "axios";
-// import "dotenv/config";
 
-// const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-// const BACKEND_URL = "http://localhost:4000";
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 const request = axios.create({
@@ -11,6 +8,11 @@ const request = axios.create({
 
 export const signin = async (credentials) => {
     const response = await request.post(`${BACKEND_URL}/api/users/signin`, credentials);
+    return response.data;
+};
+
+export const signup = async (details) => {
+    const response = await request.post(`${BACKEND_URL}/api/users`, details);
     return response.data;
 };
 
@@ -43,7 +45,6 @@ export const getSpecificMovies = async (type) => {
     if (response === null) { 
         return [];
     }
-    console.log(response.data.results);
     return response.data.results;
 };
 
@@ -129,6 +130,11 @@ export const postReview = async (movieId, review) =>{
 
 export const getReviewsByMovieId = async (movieId) => {
     const response = await request.get(`${BACKEND_URL}/api/reviews/${movieId}`);
+    return response.data;
+};
+
+export const deleteReview = async (reviewId) => {
+    const response = await request.delete(`${BACKEND_URL}/api/reviews/${reviewId}`);
     return response.data;
 };
 
