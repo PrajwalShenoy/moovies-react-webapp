@@ -3,6 +3,16 @@
     border-top: 1px solid #000000 !important;
     color: #f0c20e;
     width: 280px;
+    padding: 5px;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 50px;
+    }
+    .sidebar-text {
+        display: none;
+    }
 }
 
 .activesidebar {
