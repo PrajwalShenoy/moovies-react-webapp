@@ -5,6 +5,10 @@
     width: 280px;
 }
 
+.activesidebar {
+    background-color: #000000 !important;
+}
+
 .mainframe {
     min-height: 93.5vh;
 }

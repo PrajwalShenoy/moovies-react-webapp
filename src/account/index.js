@@ -1,7 +1,7 @@
 import React from "react";
-import { Link, useLocation, Routes, Route } from "react-router-dom";
-import { useEffect } from "react";
-import { useNavigate } from "react-router";
+import { Link, Routes, Route } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import "./index.css"
 import User from "./user";
@@ -19,6 +19,8 @@ const Account = () => {
 
     const { userIsSet } = useSelector((state) => state.userReducer);
     const { currentUser } = useSelector((state) => state.userReducer);
+    const location = useLocation();
+    const [currentLocation, setCurrentLocation] = useState(location.pathname);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const logout = () => {
@@ -39,14 +41,14 @@ const Account = () => {
                     <ul className="nav nav-pills flex-column mb-auto">
                         {
                             userIsSet &&
-                            <li className="nav-item">
+                            <li className={currentLocation === "/account" ? "nav-item activesidebar" :"nav-item"}>
                                 <Link to="/account" className="nav-link" aria-current="page">
                                     <svg className="bi me-2" width="16" height="16"></svg>
                                     Account
                                 </Link>
                             </li>
                         }
-                        <li className="nav-item">
+                        <li className={currentLocation === "/account/users" ? "nav-item activesidebar" :"nav-item"}>
                             <Link to="/account/users" className="nav-link ">
                                 <svg className="bi me-2" width="16" height="16"></svg>
                                 Users
@@ -54,7 +56,7 @@ const Account = () => {
                         </li>
                         {
                             userIsSet &&
-                            <li className="nav-item">
+                            <li className={currentLocation === "/account/followers" ? "nav-item activesidebar" :"nav-item"}>
                                 <Link to="/account/followers" className="nav-link ">
                                     <svg className="bi me-2" width="16" height="16"></svg>
                                     Followers
@@ -63,7 +65,7 @@ const Account = () => {
                         }
                         {
                             userIsSet &&
-                            <li className="nav-item">
+                            <li className={currentLocation === "/account/following" ? "nav-item activesidebar" :"nav-item"}>
                                 <Link to="/account/following" className="nav-link ">
                                     <svg className="bi me-2" width="16" height="16"></svg>
                                     Following
@@ -72,8 +74,8 @@ const Account = () => {
                         }
                         {
                             userIsSet &&
-                            <li className="nav-item">
-                                <Link to="/account/watchlist/" className="nav-link ">
+                            <li className={currentLocation === "/account/watchlist" ? "nav-item activesidebar" :"nav-item"}>
+                                <Link to="/account/watchlist" className="nav-link ">
                                     <svg className="bi me-2" width="16" height="16"></svg>
                                     Watchlist
                                 </Link>
@@ -81,7 +83,7 @@ const Account = () => {
                         }
                         {
                             userIsSet &&
-                            <li className="nav-item">
+                            <li className={currentLocation === "/account/roles" ? "nav-item activesidebar" :"nav-item"}>
                                 <Link to="/account/roles" className="nav-link ">
                                     <svg className="bi me-2" width="16" height="16"></svg>
                                     Roles
@@ -90,14 +92,14 @@ const Account = () => {
                         }
                         {
                             userIsSet && currentUser.currentRole === "Admin" &&
-                            <li className="nav-item">
+                            <li className={currentLocation === "/account/adminportal" ? "nav-item activesidebar" :"nav-item"}>
                                 <Link to="/account/adminportal" className="nav-link ">
                                     <svg className="bi me-2" width="16" height="16"></svg>
                                     Admin Portal
                                 </Link>
                             </li>
                         }
-                        {
+                        {/* {
                             userIsSet && currentUser.currentRole === "Moderator" &&
                             <li className="nav-item">
                                 <Link to="/account/modportal" className="nav-link ">
@@ -105,7 +107,7 @@ const Account = () => {
                                     Moderator Portal
                                 </Link>
                             </li>
-                        }
+                        } */}
                     </ul>
                     <hr />
                     <footer>
@@ -134,7 +136,7 @@ const Account = () => {
                     <Route path="adminportal" element={<Admin />} />
                     <Route path="roles" element={<Roles />} />
                     <Route path="watchlist" element={<Watchlist />} />
-                    <Route path="activities" element={<h1>Activities</h1>} />
+                    {/* <Route path="activities" element={<h1>Activities</h1>} /> */}
                     <Route path="users/:userId" element={<AccountDetails />} />
                 </Routes>
             </div>

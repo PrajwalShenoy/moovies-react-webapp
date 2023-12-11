@@ -7,7 +7,6 @@ import { followUser, unfollowUser } from '../user/userReducer';
 const Admin = () => {
     const dispatch = useDispatch();
     const { currentUser } = useSelector((state) => state.userReducer);
-    const existingRequests = [];
     const [userRequests, setUserRequets] = useState([]);
 
     const fetchData = async () => {
@@ -23,13 +22,15 @@ const Admin = () => {
         fetchData();
     }, [currentUser]);
 
-    const requestRole = async (role) => {
-        client.requestRole(role);
+    // app.post("/api/requests/:requestId", completeRequest);
+
+    const acceptRequest = async (requestId) => {
+        await client.completeRequest(requestId, {"approved": true});
+        fetchData();
     };
 
-    const unfollowUserId = async (userId) => {
-        dispatch(unfollowUser(userId));
-        await client.unfollowUser(currentUser.id, userId);
+    const denyRequest = async (requestId) => {
+        await client.completeRequest(requestId, {"approved": true});
         fetchData();
     };
 
@@ -64,13 +65,13 @@ const Admin = () => {
                             </td>
                             <td>
                                 {
-                                    <button className='btn btn-fail'>
-                                        Remove Role
+                                    <button className='btn btn-success me-2' onClick={() => acceptRequest(request.id)}>
+                                        Approve
                                     </button>
                                 }
                                 {
-                                    <button className='btn btn-success'>
-                                        Request Role
+                                    <button className='btn btn-fail' onClick={() => denyRequest(request.id)}>
+                                        Deny
                                     </button>
                                 }
                             </td>

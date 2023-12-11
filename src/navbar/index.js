@@ -31,6 +31,9 @@ function Navbar() {
                     case "/account/adminportal":
                         navigate("/account/users");
                         break;
+                    case "/account/roles":
+                        navigate("/account/users");
+                        break;
                 }
             }
         });

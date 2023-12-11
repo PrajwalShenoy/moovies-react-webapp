@@ -103,7 +103,17 @@ export const requestRole = async (role) => {
     return response.data;
 };
 
+export const removeRole = async (role) => {
+    const response = await request.post(`${BACKEND_URL}/api/deleterole`, {"role": role});
+    return response.data;
+};
+
 export const getRequests = async () => {
     const response = await request.get(`${BACKEND_URL}/api/requests`);
     return response.data;
 };
+
+export const completeRequest = async (requestId, body) => {
+    const response = await request.post(`${BACKEND_URL}/api/requests/${requestId}`, body);
+    return response.data;
+}
