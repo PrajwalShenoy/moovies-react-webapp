@@ -1,8 +1,9 @@
 import axios from "axios";
 // import "dotenv/config";
 
-// const BACKEND_URL = process.env.BACKEND_URL;
-const BACKEND_URL = "http://localhost:4000";
+// const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+// const BACKEND_URL = "http://localhost:4000";
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 const request = axios.create({
     withCredentials: true,
@@ -118,7 +119,7 @@ export const completeRequest = async (requestId, body) => {
     return response.data;
 }
 
-export const createReview = async (movieId, review) =>{
+export const postReview = async (movieId, review) =>{
     const response = await request.post(`${BACKEND_URL}/api/reviews`, {
         movieId: movieId,
         review: review

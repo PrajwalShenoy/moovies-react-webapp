@@ -8,7 +8,7 @@ const Followers = () => {
     const [users, setUsers] = useState([]);
     const [currentUser, setCurrentUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    const URL = 'http://localhost:4000/api/users';
+    const URL = `${process.env.REACT_APP_BACKEND_URL}/api/users`;
     const navigate = useNavigate();
 
     const fetchData = async () => {
