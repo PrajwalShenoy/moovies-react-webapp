@@ -4,7 +4,6 @@ import * as client from "../../api/client";
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from "react-router-dom";
 import { followUser, unfollowUser } from '../user/userReducer';
-import {createReview} from "../../api/client";
 
 const Users = () => {
     const [users, setUsers] = useState([]);

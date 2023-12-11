@@ -50,13 +50,18 @@ const User = () => {
         }));
     };
 
-    const saveChanges = () => {
-        dispatch(updateUser(userData));
+
+    const saveChanges = async () => {
+        await client.updateUser(userData,userData.id);
+        dispatch(updateUser(userData,userData.id));
+        console.log(userData.username);
     };
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
+
+
 
     return (
         <div className='container p-4 main-container'>
