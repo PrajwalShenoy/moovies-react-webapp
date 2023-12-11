@@ -97,3 +97,13 @@ export const setUsersCurrentRole = async (role) => {
     const response = await request.post(`${BACKEND_URL}/api/users/setrole`, {"role": role});
     return response.data;
 };
+
+export const requestRole = async (role) => {
+    const response = await request.post(`${BACKEND_URL}/api/requests`, {"requestedRole": role});
+    return response.data;
+};
+
+export const getRequests = async () => {
+    const response = await request.get(`${BACKEND_URL}/api/requests`);
+    return response.data;
+};

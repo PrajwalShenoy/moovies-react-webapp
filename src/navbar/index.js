@@ -28,10 +28,13 @@ function Navbar() {
                     case "/account":
                         navigate("/account/users");
                         break;
+                    case "/account/adminportal":
+                        navigate("/account/users");
+                        break;
                 }
             }
         });
-    },[location.pathname, currentRole]);
+    }, [location.pathname, currentRole]);
 
     const handleRoleClick = async (role) => {
         const response = await client.setUsersCurrentRole(role);
@@ -51,20 +54,20 @@ function Navbar() {
 
                 <div className="collapse navbar-collapse" id="navbarsExample09">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                        { 
-                            !userIsSet && 
+                        {
+                            !userIsSet &&
                             <li className="nav-item">
                                 <Link className="nav-link" aria-current="page" to="/signin">Sign In</Link>
                             </li>
                         }
-                        { 
-                            userIsSet && 
+                        {
+                            userIsSet &&
                             <li className="nav-item">
                                 <Link className="nav-link" aria-current="page" to="/account">{currentUser.firstName}</Link>
                             </li>
                         }
-                        { 
-                            userIsSet && 
+                        {
+                            userIsSet &&
                             <li className="nav-item">
                                 <Link className="nav-link" to="/timeline">Timeline</Link>
                             </li>
@@ -76,14 +79,14 @@ function Navbar() {
                             </li>
 
                         }
-                        { 
-                            !userIsSet && 
+                        {
+                            !userIsSet &&
                             <li className="nav-item">
                                 <Link className="nav-link" to="/account/users">Account</Link>
                             </li>
                         }
                         {
-                            userIsSet && 
+                            userIsSet &&
                             <li className="nav-item dropdown">
                                 <Link className="nav-link dropdown-toggle" to="#" id="dropdown09" data-bs-toggle="dropdown" aria-expanded="false">Role</Link>
                                 <ul className="dropdown-menu" aria-labelledby="dropdown09">

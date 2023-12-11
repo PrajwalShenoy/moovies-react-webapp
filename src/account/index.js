@@ -9,6 +9,8 @@ import Watchlist from "./watchlist";
 import Users from "./users";
 import Following from "./following";
 import Followers from "./followers";
+import Roles from "./roles";
+import Admin from "./admin";
 import { setUser, clearUser } from "./user/userReducer";
 import * as client from "../api/client";
 import AccountDetails from "./users/AccountDetails";
@@ -24,22 +26,6 @@ const Account = () => {
         dispatch(clearUser());
         navigate("/home");
     };
-
-    // const getCurrentUser = async () => {
-    //     let loggedInUser = await client.getSessionAccount();
-    //     return loggedInUser;
-    // };
-
-    // useEffect(() => {
-    //     getCurrentUser().then((user) => {
-    //         if (user) {
-    //             dispatch(setUser(user));
-    //         }
-    //         else {
-    //             navigate("/account/users");
-    //         }
-    //     });
-    // },[]);
 
     return (
         <div className="d-flex mainframe">
@@ -93,6 +79,33 @@ const Account = () => {
                                 </Link>
                             </li>
                         }
+                        {
+                            userIsSet &&
+                            <li className="nav-item">
+                                <Link to="/account/roles" className="nav-link ">
+                                    <svg className="bi me-2" width="16" height="16"></svg>
+                                    Roles
+                                </Link>
+                            </li>
+                        }
+                        {
+                            userIsSet && currentUser.currentRole === "Admin" &&
+                            <li className="nav-item">
+                                <Link to="/account/adminportal" className="nav-link ">
+                                    <svg className="bi me-2" width="16" height="16"></svg>
+                                    Admin Portal
+                                </Link>
+                            </li>
+                        }
+                        {
+                            userIsSet && currentUser.currentRole === "Moderator" &&
+                            <li className="nav-item">
+                                <Link to="/account/modportal" className="nav-link ">
+                                    <svg className="bi me-2" width="16" height="16"></svg>
+                                    Moderator Portal
+                                </Link>
+                            </li>
+                        }
                     </ul>
                     <hr />
                     <footer>
@@ -117,7 +130,10 @@ const Account = () => {
                     <Route path="users" element={<Users />} />
                     <Route path="followers" element={<Followers />} />
                     <Route path="following" element={<Following />} />
-                    <Route path="watchlist/" element={<Watchlist />} />
+                    <Route path="watchlist" element={<Watchlist />} />
+                    <Route path="adminportal" element={<Admin />} />
+                    <Route path="roles" element={<Roles />} />
+                    <Route path="watchlist" element={<Watchlist />} />
                     <Route path="activities" element={<h1>Activities</h1>} />
                     <Route path="users/:userId" element={<AccountDetails />} />
                 </Routes>
