@@ -117,3 +117,16 @@ export const completeRequest = async (requestId, body) => {
     const response = await request.post(`${BACKEND_URL}/api/requests/${requestId}`, body);
     return response.data;
 }
+
+export const createReview = async (movieId, review) =>{
+    const response = await request.post(`${BACKEND_URL}/api/reviews`, {
+        movieId: movieId,
+        review: review
+    })
+    return response.data;
+}
+
+export const getReviewsByMovieId = async (movieId) => {
+    const response = await request.get(`${BACKEND_URL}/api/reviews/:movieId`);
+    return response.data;
+};
