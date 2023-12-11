@@ -15,8 +15,8 @@ const CardDetails = () => {
     const [reviewText, setReviewText] = useState("");
 
     const toggleReviewBox = () => {
-        setShowReviewBox(!showReviewBox);
         setReviewText("");
+        setShowReviewBox(!showReviewBox);
     };
 
     const [cardDetails, setCardDetails] = useState({
@@ -33,14 +33,11 @@ const CardDetails = () => {
         "release_date": "1977-05-25",
         "runtime": 121,
     });
-    const [reviews, setReviews] = useState([
-        { id: 1, userId: 0, movieId: cardId, username: "Prajwal", review: "The movie is amazing!" },
-        { id: 2, userId: 1, movieId: cardId, username: "Rakshit", review: "Best Movie Ever!" },
-        { id: 3, userId: 2, movieId: cardId, username: "John", review: "My whole family loves this movie. Best Movie Ever! " }
-    ]);
+    const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
         client.getMovieDetails(cardId).then((data) => setCardDetails(data));
+        client.getReviewsByMovieId(cardId).then((data) => setReviews(data));
         setInWatchList(currentUser.watchlist.includes(cardId));
     }, [cardId]);
 
@@ -56,10 +53,9 @@ const CardDetails = () => {
 
     const postReview = async () => {
         const response = await client.postReview(cardId, reviewText);
-        if (response) {
-            toggleReviewBox();
-            setReviews([response, ...reviews]);
-        }
+        console.log(response);
+        toggleReviewBox();
+        setReviews([response, ...reviews]);
     };
 
     return (

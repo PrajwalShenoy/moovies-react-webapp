@@ -62,5 +62,5 @@ export const { setUser,
     addToWatchList, 
     removeFromWatchList,
     followUser,
-    unfollowUser } = userSlice.actions;
+    unfollowUser, } = userSlice.actions;
 export default userSlice.reducer;

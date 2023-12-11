@@ -128,13 +128,11 @@ export const postReview = async (movieId, review) =>{
 }
 
 export const getReviewsByMovieId = async (movieId) => {
-    const response = await request.get(`${BACKEND_URL}/api/reviews/:movieId`);
+    const response = await request.get(`${BACKEND_URL}/api/reviews/${movieId}`);
     return response.data;
 };
 
-export const updateUser = async (user,userId) => {
-
+export const updateUser = async (user, userId) => {
     const response = await axios.put(`${BACKEND_URL}/api/users/${userId}`, user);
-
     return response.data;
 };

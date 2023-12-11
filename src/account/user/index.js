@@ -9,31 +9,12 @@ import * as client from '../../api/client';
 const User = () => {
     const dispatch = useDispatch();
 
-    // const getCurrentUser = async () => {
-    //     let loggedInUser = await client.getSessionAccount();
-    //     return loggedInUser;
-    // };
-
-    // useEffect(() => {
-    //     getCurrentUser().then((user) => {
-    //         if (user) {
-    //             dispatch(setUser(user));
-    //         }
-    //     });
-    // },[]);
-
     const { currentUser } = useSelector((state) => state.userReducer);
     const [userData, setUserData] = useState(currentUser);
     const [showPassword, setShowPassword] = useState(false);
     
     const { userIsSet } = useSelector((state) => state.userReducer);
     const navigate = useNavigate();
-    // useEffect(() => {
-    //     if (!userIsSet) {
-    //         navigate("/account/users");
-    //     }
-    // }, [userIsSet]);
-
     useEffect(() => {
         populateForm();
     }, [currentUser]);
@@ -52,9 +33,9 @@ const User = () => {
 
 
     const saveChanges = async () => {
-        await client.updateUser(userData,userData.id);
-        dispatch(updateUser(userData,userData.id));
-        console.log(userData.username);
+        console.log("User data", userData);
+        const response = await client.updateUser(userData, userData.id);
+        dispatch(updateUser(userData));
     };
 
     const togglePasswordVisibility = () => {
