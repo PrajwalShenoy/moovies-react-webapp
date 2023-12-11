@@ -20,7 +20,8 @@ const MovieSearch = () => {
 
     const getMovieRequest = async () => {
         setLoading(true);
-        const url = `http://localhost:4000/api/search?query=${searchValue}`;
+        // const url = `http://localhost:4000/api/search?query=${searchValue}`;
+        const url = `${process.env.REACT_APP_BACKEND_URL}/api/search?query=${searchValue}`
 
         try {
             const response = await axios.get(url);
